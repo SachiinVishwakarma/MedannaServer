@@ -1,11 +1,13 @@
 const mongoose = require("mongoose");
+require("dotenv").config(); // Load environment variables from .env
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://host.docker.internal:27017/medanna");
+    await mongoose.connect(process.env.MONGO_URI, {
+    });
     console.log("MongoDB connected");
   } catch (error) {
-    console.error(error);
+    console.error("MongoDB connection error:", error);
     process.exit(1);
   }
 };
