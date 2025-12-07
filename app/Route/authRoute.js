@@ -10,7 +10,7 @@ function generateOTP() {
 // Check user existence and verification status
 router.post("/check-user", async (req, res) => {
     const { phone } = req.body;
-    console.log("This api hit /check-user",phone);
+    console.log("This api hit /check-user", phone);
     if (!phone) return res.status(400).json({ message: "Phone is required" });
 
     try {
@@ -63,6 +63,10 @@ router.post("/register", async (req, res) => {
     } catch (err) {
         return res.status(500).json({ error: err.message });
     }
+});
+// Debug route
+router.get("/debug", (req, res) => {
+    res.send("Hiii user, I am here");
 });
 
 // Verify OTP
