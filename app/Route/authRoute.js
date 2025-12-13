@@ -34,7 +34,6 @@ router.post("/check-user", async (req, res) => {
 // Register new user or generate OTP for existing unverified user
 router.post("/register", async (req, res) => {
     const { phone } = req.body;
-    console.log("This api hit /register");
     if (!phone) return res.status(400).json({ message: "Phone number is required" });
 
     const otp = generateOTP();
@@ -67,6 +66,21 @@ router.post("/register", async (req, res) => {
 // Debug route
 router.get("/debug", (req, res) => {
     res.send("Hiii user, I am here");
+});
+// Get all users
+router.get("/users", async (req, res) => {
+    try {
+        const users = await User.find(); // Fetch all documents
+
+        return res.json({
+            success: true,
+            count: users.length,
+            users,
+        });
+
+    } catch (err) {
+        return res.status(500).json({ error: err.message });
+    }
 });
 
 // Verify OTP
