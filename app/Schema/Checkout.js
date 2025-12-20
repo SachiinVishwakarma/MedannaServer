@@ -23,8 +23,11 @@ const CheckoutSchema = new mongoose.Schema({
 
     hasImplants: { type: Boolean, required: true },
     implantDetails: { type: String },
-    qrToken: { type: String, unique: true },
-
+    qrToken: {
+        type: String,
+        unique: true,
+        sparse: true,
+    },
     createdAt: { type: Date, default: Date.now },
 });
 

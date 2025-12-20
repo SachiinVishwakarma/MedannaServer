@@ -31,6 +31,7 @@ router.get("/profile/:userId", async (req, res) => {
                 metalImplant: checkout.hasImplants ? "Yes" : "No",
                 healthCarePolicy: checkout.hasInsurance ? "Yes" : "No",
                 selectedColor: checkout.selectedColor,
+                qrToken:checkout.qrToken
             },
         });
 
